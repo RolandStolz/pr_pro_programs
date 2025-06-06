@@ -1,0 +1,31 @@
+[project]
+name = "pr-pro-programs"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Roland Stolz", email = "roland.stolz9@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "pr-pro"
+]
+
+[tool.uv.sources]
+pr-pro = { git = "https://github.com/RolandStolz/pr_pro.git", branch = "main" }
+
+[tool.uv]
+package = true
+
+[project.scripts]
+abah = "pr_pro_programs.abah.streamlit_app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 100
+indent-width = 4
+format.quote-style = "single"
+target-version = "py313"
