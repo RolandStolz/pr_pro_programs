@@ -8,5 +8,5 @@ def main():
     run_streamlit_app(program, use_persistent_state=True)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

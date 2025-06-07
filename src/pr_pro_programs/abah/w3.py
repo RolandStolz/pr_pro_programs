@@ -63,7 +63,9 @@ def get_w3_sessions(program: Program) -> list[WorkoutSession]:
             .set_notes('+5kg if you feel good.')
         )
         .add_component(
-            single_exercise_from_prev_session(w2d2, dumbbell_split_squat, rpe=+1).set_notes('Next heavier dumbbell')
+            single_exercise_from_prev_session(w2d2, dumbbell_split_squat, rpe=+1).set_notes(
+                'Next heavier dumbbell'
+            )
         )
         .add_component(
             exercise_group_from_prev_session(

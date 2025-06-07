@@ -177,4 +177,3 @@ cython_debug/
 test.json
 
 app_state.json
-uv.lock
