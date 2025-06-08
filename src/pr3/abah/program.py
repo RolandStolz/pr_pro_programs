@@ -10,7 +10,7 @@ from pr3.abah.w8 import get_w8_sessions
 from pr_pro.configs import ComputeConfig
 from pr_pro.exercises.common import backsquat, bench_press, deadlift
 from pr_pro.program import Program
-from pr3.abah.exercises import pendlay_row
+from pr3.weightlifting_3_days.exercises import pendlay_row
 
 
 @st.cache_data

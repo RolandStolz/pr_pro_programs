@@ -14,7 +14,7 @@ from pr_pro.workout_session import (
     single_exercise_from_prev_session,
 )
 
-from pr3.abah.exercises import (
+from pr3.weightlifting_3_days.exercises import (
     banded_side_plank_leg_raise,
     cmj,
     dumbbell_shoulder_press,

@@ -1,4 +1,4 @@
-from pr3.abah.exercises import (
+from pr3.weightlifting_3_days.exercises import (
     banded_side_plank_leg_raise,
     depth_jump,
     dumbbell_shoulder_press,

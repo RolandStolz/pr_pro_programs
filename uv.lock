@@ -437,7 +437,7 @@ wheels = [
 [[package]]
 name = "pr-pro"
 version = "1.0.2"
-source = { git = "https://github.com/RolandStolz/pr_pro.git?branch=main#20f284fb18463dcf55cbc420870439b998b380d9" }
+source = { git = "https://github.com/RolandStolz/pr_pro.git?branch=main#0b6e68523a47943634904d3dec457afb6e7a6296" }
 dependencies = [
     { name = "pydantic" },
 ]
