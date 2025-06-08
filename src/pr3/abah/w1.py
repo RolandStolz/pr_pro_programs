@@ -5,7 +5,7 @@ from pr_pro.program import Program
 from pr_pro.workout_component import ExerciseGroup, SingleExercise
 from pr_pro.workout_session import WorkoutSession
 
-from pr3.weightlifting_3_days.exercises import (
+from pr3.abah.exercises import (
     box_jump,
     cable_pulldown,
     dumbbell_shoulder_press,

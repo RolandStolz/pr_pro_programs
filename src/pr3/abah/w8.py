@@ -1,14 +1,3 @@
-from pr3.weightlifting_3_days.exercises import (
-    banded_side_plank_leg_raise,
-    depth_jump,
-    dumbbell_shoulder_press,
-    dumbbell_split_squat,
-    eurostep_to_vert_jump,
-    hanging_knee_raise,
-    hip_thrust,
-    pendlay_row,
-    reverse_hyperextension,
-)
 from pr_pro.exercises.common import (
     backsquat,
     bench_press,
@@ -23,6 +12,18 @@ from pr_pro.workout_session import (
     WorkoutSession,
     exercise_group_from_prev_session,
     single_exercise_from_prev_session,
+)
+
+from pr3.abah.exercises import (
+    banded_side_plank_leg_raise,
+    depth_jump,
+    dumbbell_shoulder_press,
+    dumbbell_split_squat,
+    eurostep_to_vert_jump,
+    hanging_knee_raise,
+    hip_thrust,
+    pendlay_row,
+    reverse_hyperextension,
 )
 
 

@@ -1,4 +1,3 @@
-
 from pr_pro.exercises.common import backsquat, pullup
 from pr_pro.program import Program
 from pr_pro.workout_component import ExerciseGroup, SingleExercise
