@@ -63,7 +63,7 @@ def get_w2_sessions(program: Program) -> list[WorkoutSession]:
         .add_component(single_exercise_from_prev_session(w1d3, backsquat, reps=+2))
         .add_component(single_exercise_from_prev_session(w1d3, deadlift, percentage=+0.1))
         .add_component(
-            single_exercise_from_prev_session(w1d3, bench_press, reps=-2, percentage=+0.5)
+            single_exercise_from_prev_session(w1d3, bench_press, reps=-2, percentage=+0.05)
         )
         .add_component(
             exercise_group_from_prev_session(
