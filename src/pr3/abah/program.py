@@ -1,16 +1,16 @@
 import streamlit as st
-from pr_pro_programs.abah.w1 import get_w1_sessions
-from pr_pro_programs.abah.w2 import get_w2_sessions
-from pr_pro_programs.abah.w3 import get_w3_sessions
-from pr_pro_programs.abah.w4 import get_w4_sessions
-from pr_pro_programs.abah.w5 import get_w5_sessions
-from pr_pro_programs.abah.w6 import get_w6_sessions
-from pr_pro_programs.abah.w7 import get_w7_sessions
-from pr_pro_programs.abah.w8 import get_w8_sessions
+from pr3.abah.w1 import get_w1_sessions
+from pr3.abah.w2 import get_w2_sessions
+from pr3.abah.w3 import get_w3_sessions
+from pr3.abah.w4 import get_w4_sessions
+from pr3.abah.w5 import get_w5_sessions
+from pr3.abah.w6 import get_w6_sessions
+from pr3.abah.w7 import get_w7_sessions
+from pr3.abah.w8 import get_w8_sessions
 from pr_pro.configs import ComputeConfig
 from pr_pro.exercises.common import backsquat, bench_press, deadlift
 from pr_pro.program import Program
-from pr_pro_programs.abah.exercises import pendlay_row
+from pr3.abah.exercises import pendlay_row
 
 
 @st.cache_data

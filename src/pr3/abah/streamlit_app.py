@@ -1,6 +1,6 @@
 from pr_pro.streamlit_vis.streamlit_app import run_streamlit_app
 
-from pr_pro_programs.abah.program import get_program
+from pr3.abah.program import get_program
 
 
 def main():

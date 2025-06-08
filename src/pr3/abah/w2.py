@@ -6,7 +6,7 @@ from pr_pro.workout_session import (
     single_exercise_from_prev_session,
 )
 
-from pr_pro_programs.abah.exercises import (
+from pr3.abah.exercises import (
     box_jump,
     cable_pulldown,
     dumbbell_shoulder_press,

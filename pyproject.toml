@@ -1,5 +1,5 @@
 [project]
-name = "pr-pro-programs"
+name = "pr3"
 version = "0.1.0"
 description = "Collection of programs for the pr-pro package."
 readme = "README.md"
@@ -15,7 +15,7 @@ dependencies = [
 pr-pro = { git = "https://github.com/RolandStolz/pr_pro.git", branch = "main" }
 
 [project.scripts]
-abah = "pr_pro_programs.abah.streamlit_app:main"
+abah = "pr3.abah.streamlit_app:main"
 
 [build-system]
 requires = ["hatchling"]

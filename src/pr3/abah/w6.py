@@ -1,4 +1,4 @@
-from pr_pro_programs.abah.exercises import (
+from pr3.abah.exercises import (
     banded_side_plank_leg_raise,
     box_jump,
     cmj,
