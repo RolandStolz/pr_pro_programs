@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-pr-pro = { git = "https://github.com/RolandStolz/pr_pro.git", branch = "main" }
+pr-pro = { git = "https://github.com/RolandStolz/pr_pro.git", branch = "pdf_export" }
 
 [project.scripts]
 abah = "pr3.abah.streamlit_app:main"
@@ -26,3 +26,4 @@ line-length = 100
 indent-width = 4
 format.quote-style = "single"
 target-version = "py313"
+ignore = ["F405"]

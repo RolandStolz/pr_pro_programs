@@ -3,24 +3,11 @@ from pr_pro.program import Program
 from pr_pro.workout_component import ExerciseGroup, SingleExercise
 from pr_pro.workout_session import WorkoutSession
 
-from pr3.hypertrophy.exercises import (
-    power_snatch,
-    arms,
-    box_jump,
-    reverse_hyperextension,
-    russian_twist,
-    bo_dumbbell_row,
-    dumbbell_press,
-    muscle_snatch,
-    side_plank_leg_raise,
-    calf_raise,
-    push_press,
-    lunges,
-)
+from pr3.hypertrophy.exercises import *  # noqa: F403
 
 
-def get_w1_sessions(program: Program) -> list[WorkoutSession]:
-    w1d1 = (
+def add_w1_sessions(program: Program) -> list[WorkoutSession]:
+    d1 = (
         WorkoutSession(id='W1D1')
         .add_component(
             SingleExercise(exercise=box_jump).add_repeating_set(5, box_jump.create_set(4))
@@ -48,7 +35,7 @@ def get_w1_sessions(program: Program) -> list[WorkoutSession]:
         )
     )
 
-    w1d2 = (
+    d2 = (
         WorkoutSession(id='W1D2')
         .add_component(
             SingleExercise(exercise=bench_press).add_repeating_set(
@@ -67,10 +54,10 @@ def get_w1_sessions(program: Program) -> list[WorkoutSession]:
                 },
             )
         )
-        .add_component(SingleExercise(exercise=arms).add_repeating_set(4, arms.create_set(10)))
+        .add_component(SingleExercise(exercise=arms).add_repeating_set(3, arms.create_set(10)))
     )
 
-    w1d3 = (
+    d3 = (
         WorkoutSession(id='W1D3')
         .add_component(
             SingleExercise(exercise=backsquat).add_repeating_set(
@@ -79,7 +66,7 @@ def get_w1_sessions(program: Program) -> list[WorkoutSession]:
         )
         .add_component(
             SingleExercise(exercise=muscle_snatch).add_repeating_set(
-                5, muscle_snatch.create_set(3, percentage=0.4)
+                5, muscle_snatch.create_set(3, percentage=0.5)
             )
         )
         .add_component(
@@ -98,8 +85,13 @@ def get_w1_sessions(program: Program) -> list[WorkoutSession]:
         )
     )
 
-    w1d4 = (
+    d4 = (
         WorkoutSession(id='W1D4')
+        .add_component(
+            SingleExercise(exercise=eurostep_to_land, notes='each side').add_repeating_set(
+                5, eurostep_to_land.create_set(2)
+            )
+        )
         .add_component(
             ExerciseGroup(exercises=[power_clean, push_press]).add_repeating_group_sets(
                 4,
@@ -120,16 +112,17 @@ def get_w1_sessions(program: Program) -> list[WorkoutSession]:
             ).add_group_sets(
                 {
                     pullup: pullup.create_set(30),
-                    pushup: pushup.create_set(50),
-                    lunges: lunges.create_set(50, 20),
+                    pushup: pushup.create_set(60),
+                    lunges: lunges.create_set(60, 20),
                 },
             )
         )
     )
 
-    program.add_workout_session(w1d1)
-    program.add_workout_session(w1d2)
-    program.add_workout_session(w1d3)
-    program.add_workout_session(w1d4)
+    sessions = [d1, d2, d3, d4]
+    for s in sessions:
+        program.add_workout_session(s)
 
-    return [w1d1, w1d2, w1d3]
+    program.add_program_phase('W1', [s.id for s in sessions])
+
+    return sessions
