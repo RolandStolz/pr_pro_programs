@@ -15,7 +15,7 @@ def get_program() -> Program:
     #     Program(name='WL Hypertrophy Lenz')
     #     .add_best_exercise_value(backsquat, 110)
     #     .add_best_exercise_value(deadlift, 140)
-    #     .add_best_exercise_value(bench_press, 100)
+    #     .add_best_exercise_value(bench_press, 110)
     #     .add_best_exercise_value(clean_jerk, 80)
     #     .add_best_exercise_value(snatch, 60)
     # )
@@ -53,3 +53,4 @@ if __name__ == '__main__':
     )
     # print(program)
     program.export_to_pdf(Path('roland.pdf'))
+    # program.export_to_pdf(Path('lenz.pdf'))

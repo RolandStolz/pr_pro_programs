@@ -594,8 +594,8 @@ wheels = [
 
 [[package]]
 name = "pr-pro"
-version = "1.0.3"
-source = { git = "https://github.com/RolandStolz/pr_pro.git?branch=pdf_export#b9514e979c5c6f2f1953a2bdef378b76ccf1a4fa" }
+version = "1.1.0"
+source = { git = "https://github.com/RolandStolz/pr_pro.git?branch=main#463827b2e4eacbbc1ff3090a834235382fff82cb" }
 dependencies = [
     { name = "pandas" },
     { name = "pydantic" },
@@ -618,7 +618,7 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pr-pro", extras = ["vis"], git = "https://github.com/RolandStolz/pr_pro.git?branch=pdf_export" }]
+requires-dist = [{ name = "pr-pro", extras = ["vis"], git = "https://github.com/RolandStolz/pr_pro.git?branch=main" }]
 
 [[package]]
 name = "protobuf"

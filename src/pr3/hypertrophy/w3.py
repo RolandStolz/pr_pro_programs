@@ -2,12 +2,13 @@ from pr_pro.exercises.common import backsquat, pullup, bench_press, deadlift, po
 from pr_pro.program import Program
 from pr_pro.workout_component import SingleExercise
 from pr_pro.workout_session import (
+    ExerciseGroup,
     WorkoutSession,
     single_exercise_from_prev_session,
     exercise_group_from_prev_session,
 )
 
-from pr3.hypertrophy.exercises import *  # noqa: F403
+from pr3.hypertrophy.exercises import *
 
 
 def add_w3_sessions(program: Program) -> list[WorkoutSession]:
@@ -24,7 +25,7 @@ def add_w3_sessions(program: Program) -> list[WorkoutSession]:
         )
         .add_component(single_exercise_from_prev_session(w2d1, power_snatch, percentage=+0.075))
         .add_component(
-            single_exercise_from_prev_session(w2d1, backsquat, percentage=+0.05, reps=-2, sets=+1)
+            single_exercise_from_prev_session(w2d1, backsquat, percentage=+0.05, reps=-2)
         )
         .add_component(
             exercise_group_from_prev_session(
@@ -52,7 +53,7 @@ def add_w3_sessions(program: Program) -> list[WorkoutSession]:
         .add_component(single_exercise_from_prev_session(w2d3, backsquat, percentage=+0.025))
         .add_component(single_exercise_from_prev_session(w2d3, muscle_snatch, percentage=+0.05))
         .add_component(
-            single_exercise_from_prev_session(w2d3, deadlift, reps=-2, percentage=+0.075, sets=+1)
+            single_exercise_from_prev_session(w2d3, deadlift, reps=-2, percentage=+0.075)
         )
         .add_component(
             exercise_group_from_prev_session(
@@ -65,8 +66,13 @@ def add_w3_sessions(program: Program) -> list[WorkoutSession]:
         WorkoutSession(id='W3D4')
         .add_component(single_exercise_from_prev_session(w2d4, eurostep_to_land, reps=+1))
         .add_component(
-            exercise_group_from_prev_session(
-                w2d4, [power_clean, push_press], percentage=(+0.075, +0.075)
+            ExerciseGroup(exercises=[power_clean, push_press, jerk]).add_repeating_group_sets(
+                4,
+                {
+                    power_clean: power_clean.create_set(3, percentage=0.675),
+                    push_press: push_press.create_set(2, percentage=0.675),
+                    jerk: jerk.create_set(1, percentage=0.675),
+                },
             )
         )
         .add_component(single_exercise_from_prev_session(w2d4, bench_press, percentage=+0.05))

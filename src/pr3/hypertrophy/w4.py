@@ -36,7 +36,6 @@ def add_w4_sessions(program: Program) -> list[WorkoutSession]:
     )
 
     calculator = Brzycki1RMCalculator()
-
     d2 = (
         WorkoutSession(id='W4D2')
         .add_component(
@@ -52,11 +51,11 @@ def add_w4_sessions(program: Program) -> list[WorkoutSession]:
                     reps=int(calculator.max_reps_from_weight(1.0, 0.7)), percentage=0.7
                 )
             )
-            .add_set(
-                bench_press.create_set(
-                    reps=int(calculator.max_reps_from_weight(1.0, 0.6)), percentage=0.6
-                )
-            )
+            # .add_set(
+            #     bench_press.create_set(
+            #         reps=int(calculator.max_reps_from_weight(1.0, 0.6)), percentage=0.6
+            #     )
+            # )
         )
         .add_component(
             SingleExercise(exercise=weighted_pullup, notes='5-10 kg').add_repeating_set(
@@ -74,9 +73,6 @@ def add_w4_sessions(program: Program) -> list[WorkoutSession]:
     d3 = (
         WorkoutSession(id='W4D3')
         .add_component(
-            single_exercise_from_prev_session(w3d3, backsquat, percentage=+0.05, sets=-1)
-        )
-        .add_component(
             ExerciseGroup(
                 exercises=[snatch_high_pull, low_hang_power_snatch],
             ).add_repeating_group_sets(
@@ -85,6 +81,20 @@ def add_w4_sessions(program: Program) -> list[WorkoutSession]:
                     snatch_high_pull: snatch_high_pull.create_set(3, percentage=0.7),
                     low_hang_power_snatch: low_hang_power_snatch.create_set(3, percentage=0.7),
                 },
+            )
+        )
+        .add_component(
+            # single_exercise_from_prev_session(w3d3, backsquat, percentage=+0.05, sets=-1)
+            SingleExercise(exercise=backsquat)
+            .add_set(
+                backsquat.create_set(
+                    reps=int(calculator.max_reps_from_weight(1.0, 0.8)), percentage=0.8
+                )
+            )
+            .add_set(
+                backsquat.create_set(
+                    reps=int(calculator.max_reps_from_weight(1.0, 0.7)), percentage=0.7
+                )
             )
         )
         .add_component(
@@ -108,7 +118,7 @@ def add_w4_sessions(program: Program) -> list[WorkoutSession]:
         )
         .add_component(
             exercise_group_from_prev_session(
-                w3d4, [power_clean, push_press], percentage=(+0.075, +0.075), reps=(0, -1)
+                w3d4, [power_clean, push_press, jerk], percentage=(+0.075, +0.075, +0.075)
             )
         )
         .add_component(

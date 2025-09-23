@@ -16,6 +16,7 @@ low_hang_power_snatch = PowerExercise(name='Low hang power snatch')
 snatch_high_pull = PowerExercise(name='Snatch high pull')
 push_press = PowerExercise(name='Push press')
 clean_jerk = PowerExercise(name='Clean & jerk')
+jerk = PowerExercise(name='Jerk')
 
 bo_dumbbell_row = RepsAndWeightsExercise(name='Bentover dumbbell row (single arm)')
 dumbbell_press = RepsAndWeightsExercise(name='Dumbbell press')
