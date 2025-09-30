@@ -11,11 +11,6 @@ from pr_pro.functions import Brzycki1RMCalculator
 from pr3.hypertrophy.exercises import *  # noqa: F403
 
 
-def _reps_from_percentage_and_rel_percentage(percentage: float, rel_percentage: float) -> float:
-    calculator = Brzycki1RMCalculator()
-    return calculator.max_reps_from_weight(percentage, rel_percentage)
-
-
 def add_w4_sessions(program: Program) -> list[WorkoutSession]:
     w3d1 = program.get_workout_session_by_id('W3D1')
     w3d2 = program.get_workout_session_by_id('W3D2')
@@ -30,7 +25,7 @@ def add_w4_sessions(program: Program) -> list[WorkoutSession]:
         .add_component(single_exercise_from_prev_session(w3d1, backsquat, percentage=+0.1, reps=-2))
         .add_component(
             exercise_group_from_prev_session(
-                w3d1, [reverse_hyperextension, russian_twist], reps=(+2, -4), weight=(None, +10)
+                w3d1, [reverse_hyperextension, russian_twist], reps=(+2, -4), weight=(None, +5)
             )
         )
     )
@@ -51,11 +46,6 @@ def add_w4_sessions(program: Program) -> list[WorkoutSession]:
                     reps=int(calculator.max_reps_from_weight(1.0, 0.7)), percentage=0.7
                 )
             )
-            # .add_set(
-            #     bench_press.create_set(
-            #         reps=int(calculator.max_reps_from_weight(1.0, 0.6)), percentage=0.6
-            #     )
-            # )
         )
         .add_component(
             SingleExercise(exercise=weighted_pullup, notes='5-10 kg').add_repeating_set(
@@ -84,7 +74,6 @@ def add_w4_sessions(program: Program) -> list[WorkoutSession]:
             )
         )
         .add_component(
-            # single_exercise_from_prev_session(w3d3, backsquat, percentage=+0.05, sets=-1)
             SingleExercise(exercise=backsquat)
             .add_set(
                 backsquat.create_set(
