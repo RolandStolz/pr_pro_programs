@@ -1,4 +1,4 @@
-from pr_pro.exercises.common import backsquat, pullup, bench_press, deadlift, power_clean, pushup
+from pr_pro.exercises.common import backsquat, pullup, bench_press, deadlift, pushup
 from pr_pro.program import Program
 from pr_pro.workout_component import SingleExercise
 from pr_pro.workout_session import (
@@ -7,7 +7,7 @@ from pr_pro.workout_session import (
     exercise_group_from_prev_session,
 )
 
-from pr3.hypertrophy.exercises import *  # noqa: F403
+from pr3.hypertrophy_alt.exercises import *  # noqa: F403
 
 
 def add_w2_sessions(program: Program) -> list[WorkoutSession]:
@@ -31,8 +31,9 @@ def add_w2_sessions(program: Program) -> list[WorkoutSession]:
 
     d2 = (
         WorkoutSession(id='W2D2')
-        .add_component(single_exercise_from_prev_session(w1d2, bench_press, percentage=+0.05))
-        .add_component(single_exercise_from_prev_session(w1d2, pullup, reps=+2))
+        # .add_component(single_exercise_from_prev_session(w1d2, bench_press, percentage=+0.05))
+        .add_component(single_exercise_from_prev_session(w1d2, bench_press, reps=+2))
+        .add_component(single_exercise_from_prev_session(w1d2, pullup, sets=+2))
         .add_component(
             exercise_group_from_prev_session(w1d2, [bo_dumbbell_row, dumbbell_press], reps=(+2, +2))
         )
@@ -53,15 +54,12 @@ def add_w2_sessions(program: Program) -> list[WorkoutSession]:
 
     d4 = (
         WorkoutSession(id='W2D4')
-        .add_component(single_exercise_from_prev_session(w1d4, eurostep_to_land, reps=+1))
         .add_component(
-            exercise_group_from_prev_session(
-                w1d4, [power_clean, push_press], percentage=(+0.1, +0.1)
-            )
+            single_exercise_from_prev_session(w1d4, bench_press, percentage=+0.05, sets=-1)
         )
-        .add_component(single_exercise_from_prev_session(w1d4, bench_press, percentage=+0.05))
+        .add_component(single_exercise_from_prev_session(w1d4, lat_pulldown, reps=+2))
         .add_component(
-            exercise_group_from_prev_session(w1d4, [pullup, pushup, lunges]).set_notes(
+            exercise_group_from_prev_session(w1d4, [trx_row, pushup, hanging_leg_raise]).set_notes(
                 'Goal is one minute faster than W1D4'
             )
         )
