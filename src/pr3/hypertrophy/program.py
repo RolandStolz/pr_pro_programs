@@ -68,24 +68,25 @@ def get_phase2(phase1: Program) -> Program:
     return program
 
 
+compute_config = ComputeConfig(
+    one_rm_calculator=Epley1RMCalculator(),
+    exercise_associations={
+        power_clean: clean_jerk,
+        push_press: clean_jerk,
+        jerk: clean_jerk,
+        power_snatch: snatch,
+        muscle_snatch: snatch,
+        low_hang_power_snatch: snatch,
+        snatch_high_pull: snatch,
+    },
+)
+
+
 if __name__ == '__main__':
     # calculator = Epley1RMCalculator()
     # print(calculator.one_rep_max(88, 10))
     # print(calculator.one_rep_max(105, 9))
     # quit()
-
-    compute_config = ComputeConfig(
-        one_rm_calculator=Epley1RMCalculator(),
-        exercise_associations={
-            power_clean: clean_jerk,
-            push_press: clean_jerk,
-            jerk: clean_jerk,
-            power_snatch: snatch,
-            muscle_snatch: snatch,
-            low_hang_power_snatch: snatch,
-            snatch_high_pull: snatch,
-        },
-    )
 
     phase1 = get_phase1()
     phase2 = get_phase2(phase1)
