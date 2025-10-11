@@ -1,4 +1,4 @@
-from pr_pro.exercises.common import backsquat, bench_press, deadlift, power_clean
+from pr_pro.exercises.common import backsquat, bench_press, deadlift, power_clean, pullup
 from pr_pro.program import Program
 from pr_pro.workout_component import SingleExercise, ExerciseGroup
 from pr_pro.workout_session import (
@@ -6,14 +6,8 @@ from pr_pro.workout_session import (
     single_exercise_from_prev_session,
     exercise_group_from_prev_session,
 )
-from pr_pro.functions import Brzycki1RMCalculator
 
 from pr3.hypertrophy.exercises import *  # noqa: F403
-
-
-def _reps_from_percentage_and_rel_percentage(percentage: float, rel_percentage: float) -> float:
-    calculator = Brzycki1RMCalculator()
-    return calculator.max_reps_from_weight(percentage, rel_percentage)
 
 
 def add_w5_sessions(program: Program, phase_1_program: Program) -> list[WorkoutSession]:
@@ -56,7 +50,8 @@ def add_w5_sessions(program: Program, phase_1_program: Program) -> list[WorkoutS
         .add_component(
             SingleExercise(
                 exercise=bench_press, notes='Adjust 1rm after last weeks test.'
-            ).add_repeating_set(4, bench_press.create_set(6, percentage=0.725))
+            ).add_repeating_set(4, bench_press.create_set(6, percentage=0.7))
+            # ).add_repeating_set(4, bench_press.create_set(6, percentage=0.725))
         )
         .add_component(single_exercise_from_prev_session(w4d2, weighted_pullup, reps=+1))
         .add_component(
@@ -73,6 +68,11 @@ def add_w5_sessions(program: Program, phase_1_program: Program) -> list[WorkoutS
 
     d3 = (
         WorkoutSession(id='W5D3')
+        # .add_component(
+        #     SingleExercise(exercise=eurostep_to_box).add_repeating_set(
+        #         5, eurostep_to_box.create_set(2)
+        #     )
+        # )
         .add_component(
             exercise_group_from_prev_session(
                 w4d3,
@@ -82,27 +82,25 @@ def add_w5_sessions(program: Program, phase_1_program: Program) -> list[WorkoutS
             )
         )
         .add_component(
-            exercise_group_from_prev_session(
-                w4d4,
-                [power_clean, push_press, jerk],
-                percentage=(+0.025, +0.025, +0.025),
-                # reps=(None, -1, None),
+            SingleExercise(exercise=backsquat).add_repeating_set(
+                4,
+                backsquat.create_set(reps=4, percentage=0.75),
             )
         )
         .add_component(
-            SingleExercise(exercise=backsquat).add_repeating_set(
-                4,
-                backsquat.create_set(reps=4, percentage=0.8),  # Maybe 0.775 if too heavy
+            SingleExercise(exercise=leg_curl_machine).add_repeating_set(
+                4, leg_curl_machine.create_set(8, 60)
             )
         )
         .add_component(
             ExerciseGroup(
-                exercises=[single_leg_calf_raise, banded_toes_to_bar]
+                exercises=[single_leg_calf_raise, banded_toes_to_bar],
+                notes='20-30kg for calf raise.',
             ).add_repeating_group_sets(
                 4,
                 {
-                    single_leg_calf_raise: single_leg_calf_raise.create_set(8, weight=40),
-                    banded_toes_to_bar: banded_toes_to_bar.create_set(8),
+                    single_leg_calf_raise: single_leg_calf_raise.create_set(8, weight=25),
+                    banded_toes_to_bar: banded_toes_to_bar.create_set(6),
                 },
             )
         )
@@ -111,8 +109,11 @@ def add_w5_sessions(program: Program, phase_1_program: Program) -> list[WorkoutS
     d4 = (
         WorkoutSession(id='W5D4')
         .add_component(
-            SingleExercise(exercise=eurostep_to_box).add_repeating_set(
-                5, eurostep_to_box.create_set(2)
+            exercise_group_from_prev_session(
+                w4d4,
+                [power_clean, push_press, jerk],
+                percentage=(+0.025, +0.025, +0.025),
+                # reps=(None, -1, None),
             )
         )
         .add_component(
@@ -120,15 +121,9 @@ def add_w5_sessions(program: Program, phase_1_program: Program) -> list[WorkoutS
                 5, deadlift.create_set(5, percentage=0.775)
             )
         )
-        # .add_component(
-        #     exercise_group_from_prev_session(
-        #         w4d4, [power_clean, push_press, jerk], percentage=(+0.075, +0.075, +0.075)
-        #     )
-        # )
         .add_component(
-            # single_exercise_from_prev_session(w4d4, bench_press, percentage=+0.05)
             SingleExercise(exercise=bench_press).add_repeating_set(
-                4, bench_press.create_set(4, percentage=0.775)
+                4, bench_press.create_set(4, percentage=0.75)
             )
         )
         .add_component(
@@ -136,11 +131,11 @@ def add_w5_sessions(program: Program, phase_1_program: Program) -> list[WorkoutS
                 4, bulgarian_split_squats.create_set(6, weight=60)
             )
         )
-        # .add_component(
-        #     exercise_group_from_prev_session(w4d4, [pullup, pushup, lunges]).set_notes(
-        #         'Goal: 1 Minute faster than W3D4'
-        #     )
-        # )
+        .add_component(
+            SingleExercise(
+                exercise=pullup, notes='Can also be done as superset next to split squats'
+            ).add_repeating_set(4, pullup.create_set(8))
+        )
     )
 
     sessions = [d1, d2, d3, d4]

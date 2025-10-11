@@ -103,7 +103,7 @@ def add_w1_sessions(program: Program) -> list[WorkoutSession]:
         )
         .add_component(
             SingleExercise(exercise=bench_press).add_repeating_set(
-                4, bench_press.create_set(8, percentage=0.6)
+                5, bench_press.create_set(8, percentage=0.6)
             )
         )
         .add_component(

@@ -6,7 +6,7 @@ from pr_pro.workout_session import (
     single_exercise_from_prev_session,
     exercise_group_from_prev_session,
 )
-from pr_pro.functions import Brzycki1RMCalculator
+from pr_pro.functions import Epley1RMCalculator
 
 from pr3.hypertrophy.exercises import *  # noqa: F403
 
@@ -30,22 +30,10 @@ def add_w4_sessions(program: Program) -> list[WorkoutSession]:
         )
     )
 
-    calculator = Brzycki1RMCalculator()
     d2 = (
         WorkoutSession(id='W4D2')
         .add_component(
-            # single_exercise_from_prev_session(w3d2, bench_press, percentage=+0.1, reps=-2, sets=+1)
-            SingleExercise(exercise=bench_press, notes='Reps is target for 100% relative intensity')
-            .add_set(
-                bench_press.create_set(
-                    reps=int(calculator.max_reps_from_weight(1.0, 0.8)), percentage=0.8
-                )
-            )
-            .add_set(
-                bench_press.create_set(
-                    reps=int(calculator.max_reps_from_weight(1.0, 0.7)), percentage=0.7
-                )
-            )
+            single_exercise_from_prev_session(w3d2, bench_press, percentage=+0.025, sets=-1)
         )
         .add_component(
             SingleExercise(exercise=weighted_pullup, notes='5-10 kg').add_repeating_set(
@@ -60,6 +48,7 @@ def add_w4_sessions(program: Program) -> list[WorkoutSession]:
         .add_component(SingleExercise(exercise=arms).add_repeating_set(3, arms.create_set(10)))
     )
 
+    calculator = Epley1RMCalculator()
     d3 = (
         WorkoutSession(id='W4D3')
         .add_component(
@@ -77,12 +66,12 @@ def add_w4_sessions(program: Program) -> list[WorkoutSession]:
             SingleExercise(exercise=backsquat)
             .add_set(
                 backsquat.create_set(
-                    reps=int(calculator.max_reps_from_weight(1.0, 0.8)), percentage=0.8
+                    reps=round(calculator.max_reps_from_weight(1.0, 0.8)), percentage=0.8
                 )
             )
             .add_set(
                 backsquat.create_set(
-                    reps=int(calculator.max_reps_from_weight(1.0, 0.7)), percentage=0.7
+                    reps=round(calculator.max_reps_from_weight(1.0, 0.7)), percentage=0.7
                 )
             )
         )
@@ -106,15 +95,28 @@ def add_w4_sessions(program: Program) -> list[WorkoutSession]:
             )
         )
         .add_component(
+            SingleExercise(exercise=bench_press, notes='Reps is target for 100% relative intensity')
+            .add_set(
+                bench_press.create_set(
+                    reps=round(calculator.max_reps_from_weight(1.0, 0.8)), percentage=0.8
+                )
+            )
+            .add_set(
+                bench_press.create_set(
+                    reps=round(calculator.max_reps_from_weight(1.0, 0.7)), percentage=0.7
+                )
+            )
+        )
+        .add_component(
             exercise_group_from_prev_session(
                 w3d4, [power_clean, push_press, jerk], percentage=(+0.075, +0.075, +0.075)
             )
         )
-        .add_component(
-            SingleExercise(exercise=bench_press).add_repeating_set(
-                4, bench_press.create_set(4, percentage=0.8)
-            )
-        )
+        # .add_component(
+        #     SingleExercise(exercise=bench_press).add_repeating_set(
+        #         4, bench_press.create_set(4, percentage=0.8)
+        #     )
+        # )
         .add_component(
             exercise_group_from_prev_session(w3d4, [pullup, pushup, lunges]).set_notes(
                 'Goal: 1 Minute faster than W3D4'

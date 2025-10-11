@@ -37,7 +37,9 @@ def add_w3_sessions(program: Program) -> list[WorkoutSession]:
     d2 = (
         WorkoutSession(id='W3D2')
         .add_component(
-            single_exercise_from_prev_session(w2d2, bench_press, percentage=+0.1, reps=-2, sets=+1)
+            single_exercise_from_prev_session(
+                w2d2, bench_press, percentage=+0.075, reps=-2, sets=+1
+            )
         )
         .add_component(single_exercise_from_prev_session(w2d2, pullup, reps=+1))
         .add_component(

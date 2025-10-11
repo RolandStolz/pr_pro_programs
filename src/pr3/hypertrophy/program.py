@@ -1,5 +1,12 @@
 from pathlib import Path
 from pr3.hypertrophy.w5 import add_w5_sessions
+from pr3.hypertrophy.w6 import add_w6_sessions
+from pr3.hypertrophy.w7 import add_w7_sessions
+from pr3.hypertrophy.w8 import add_w8_sessions
+from pr3.visualization import (
+    extract_progression_from_program,
+    plot_reps_weight_exercise_progression,
+)
 from pr_pro.configs import ComputeConfig
 from pr_pro.exercises.common import backsquat, bench_press, deadlift, power_clean
 from pr_pro.functions import Epley1RMCalculator
@@ -43,15 +50,20 @@ def get_phase1() -> Program:
 def get_phase2(phase1: Program) -> Program:
     program = (
         Program(name='WL Hypertrophy Phase 2 - Roland')
-        .add_best_exercise_value(backsquat, 136.5)
+        # .add_best_exercise_value(backsquat, 136.5)
+        .add_best_exercise_value(backsquat, 140)
         .add_best_exercise_value(deadlift, 180)
-        .add_best_exercise_value(bench_press, 117.333)
+        # .add_best_exercise_value(bench_press, 117.333)
+        .add_best_exercise_value(bench_press, 120)
         .add_best_exercise_value(clean_jerk, 110)
         .add_best_exercise_value(snatch, 85)
         .add_best_exercise_value(barbell_row, 180 * 0.6)
     )
 
     add_w5_sessions(program, phase1)
+    add_w6_sessions(program)
+    add_w7_sessions(program)
+    add_w8_sessions(program)
 
     return program
 
@@ -84,3 +96,17 @@ if __name__ == '__main__':
     phase2.compute_values(compute_config)
     phase2.export_to_pdf(Path('roland_phase2.pdf'))
     # program.export_to_pdf(Path('lenz.pdf'))
+
+    # Plotting
+    # exercise = backsquat
+    # exercise = bench_press
+    exercise = deadlift
+    sets = extract_progression_from_program(phase1, exercise)
+    sets2 = extract_progression_from_program(phase2, exercise)
+    print(sets2)
+    sets.extend(sets2)
+
+    for s in sets:
+        print(s)
+
+    plot_reps_weight_exercise_progression(phase1, exercise, sets, show=True)  # pyright: ignore[reportArgumentType]

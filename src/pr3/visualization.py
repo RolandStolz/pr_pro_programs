@@ -62,13 +62,12 @@ def plot_reps_weight_exercise_progression(
         'g-',
         linewidth=2,
         label='Relative Intensity (%)',
-        marker='^',
-        alpha=0.8,
+        marker='o',
     )
 
     # Secondary axis for reps
     ax2 = ax.twinx()
-    line3 = ax2.plot(steps, reps_list, 'r-', linewidth=2, label='Reps', marker='s')
+    line3 = ax2.plot(steps, reps_list, 'r--', linewidth=1, label='Reps', marker='x', alpha=0.8)
     line4 = ax2.plot(steps, n_sets_list, 'm--', linewidth=1, label='# Sets', marker='x', alpha=0.8)
 
     # Formatting for primary axis (percentages)

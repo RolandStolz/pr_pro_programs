@@ -31,7 +31,7 @@ def add_w2_sessions(program: Program) -> list[WorkoutSession]:
 
     d2 = (
         WorkoutSession(id='W2D2')
-        .add_component(single_exercise_from_prev_session(w1d2, bench_press, percentage=+0.05))
+        .add_component(single_exercise_from_prev_session(w1d2, bench_press, reps=+2))
         .add_component(single_exercise_from_prev_session(w1d2, pullup, reps=+2))
         .add_component(
             exercise_group_from_prev_session(w1d2, [bo_dumbbell_row, dumbbell_press], reps=(+2, +2))
@@ -59,7 +59,9 @@ def add_w2_sessions(program: Program) -> list[WorkoutSession]:
                 w1d4, [power_clean, push_press], percentage=(+0.1, +0.1)
             )
         )
-        .add_component(single_exercise_from_prev_session(w1d4, bench_press, percentage=+0.05))
+        .add_component(
+            single_exercise_from_prev_session(w1d4, bench_press, percentage=+0.05, sets=-1)
+        )
         .add_component(
             exercise_group_from_prev_session(w1d4, [pullup, pushup, lunges]).set_notes(
                 'Goal is one minute faster than W1D4'
